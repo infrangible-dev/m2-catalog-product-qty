@@ -13,18 +13,18 @@ define([
     return function (widget) {
         $.widget('mage.SwatchRenderer', widget, {
             _getNewPrices: function () {
-                var qtyInput = $(this.options.qtyInfo);
-                var qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
+                const qtyInput = $(this.options.qtyInfo);
+                const qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
 
-                var newPrices = this._super();
+                const newPrices = this._super();
 
                 if (qtyValue > 1) {
-                    var allowedProduct = this._getAllowedProductWithMinPrice(this._CalcProducts());
+                    const allowedProduct = this._getAllowedProductWithMinPrice(this._CalcProducts());
 
                     if (!_.isEmpty(allowedProduct)) {
                         if (this.options.jsonConfig.optionPrices[allowedProduct].tierPrices) {
-                            var tierPrices = this.options.jsonConfig.optionPrices[allowedProduct].tierPrices;
-                            var i, tierPriceItem;
+                            const tierPrices = this.options.jsonConfig.optionPrices[allowedProduct].tierPrices;
+                            let i, tierPriceItem;
                             for (i = 0; i < tierPrices.length; i++) {
                                 tierPriceItem = tierPrices[i];
                                 if (qtyValue >= tierPriceItem.qty) {

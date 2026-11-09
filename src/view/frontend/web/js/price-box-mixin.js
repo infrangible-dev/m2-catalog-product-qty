@@ -14,12 +14,12 @@ define([
     return function (widget) {
         $.widget('mage.priceBox', widget, {
             updatePrice: function updatePrice(newPrices) {
-                var self = this;
+                const self = this;
 
                 if (newPrices) {
-                    var qtyInput = $(self.qtyInfo);
+                    const qtyInput = $(self.qtyInfo);
 
-                    var qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
+                    const qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
 
                     $.each(newPrices, function(priceHash, prices) {
                         if (priceHash !== 'prices') {
@@ -41,12 +41,11 @@ define([
             },
 
             updateProductTierPrice: function updateProductTierPrice() {
-                var self = this,
-                    originalPrice,
+                const self = this,
                     prices = {'prices': {}};
 
                 if (self.options.prices.finalPrice) {
-                    originalPrice = self.options.prices.finalPrice.amount;
+                    const originalPrice = self.options.prices.finalPrice.amount;
                     prices.prices.unitPrice = {'amount': self.getPrice('unit') - originalPrice};
                 }
 
@@ -56,11 +55,11 @@ define([
             },
 
             getPrice: function(priceKey) {
-                var self = this;
+                const self = this;
 
-                var tierPrice = self._super(priceKey === 'unit' ? 'price' : priceKey);
+                let tierPrice = self._super(priceKey === 'unit' ? 'price' : priceKey);
 
-                var finalPriceBox = $('[data-price-type="finalPrice"]', self.element);
+                const finalPriceBox = $('[data-price-type="finalPrice"]', self.element);
 
                 if (finalPriceBox.length === 0) {
                     return tierPrice;
@@ -75,10 +74,10 @@ define([
                     return tierPrice;
                 }
 
-                var qtyInput = $(self.qtyInfo);
-                var qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
+                const qtyInput = $(self.qtyInfo);
+                const qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
 
-                var totalPrice = tierPrice * qtyValue;
+                const totalPrice = tierPrice * qtyValue;
 
                 if (priceKey === 'price') {
                     $.each(self.cache.additionalPriceObject, function(priceHash, prices) {
@@ -101,7 +100,7 @@ define([
             },
 
             reloadPrice: function reDrawPrices() {
-                var self = this;
+                const self = this;
 
                 self._super();
 
@@ -109,7 +108,7 @@ define([
                     return;
                 }
 
-                var finalPriceBox = $('[data-price-type="finalPrice"]', self.element);
+                const finalPriceBox = $('[data-price-type="finalPrice"]', self.element);
 
                 if (finalPriceBox.length === 0) {
                     return;
@@ -117,26 +116,26 @@ define([
 
                 _.each(self.cache.displayPrices, function (price, priceCode) {
                     if (priceCode === 'unitPrice') {
-                        var priceValue = price.final;
-                        var formattedPrice = price.formatted;
+                        const priceValue = price.final;
+                        const formattedPrice = price.formatted;
 
-                        var qtyInput = $(self.qtyInfo);
+                        const qtyInput = $(self.qtyInfo);
                         if (qtyInput.length > 0) {
-                            var qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
+                            const qtyValue = qtyInput.length > 0 ? qtyInput.val() : 1;
 
-                            var qtyField = qtyInput.closest('.field.qty');
+                            const qtyField = qtyInput.closest('.field.qty');
                             if (qtyField.length > 0) {
-                                var qtySelect = qtyField.find('select');
-                                var unitPriceHint = qtyField.find('.unit-price-hint');
+                                const qtySelect = qtyField.find('select');
+                                let unitPriceHint = qtyField.find('.unit-price-hint');
 
                                 if (qtyValue > 1) {
-                                    var addUnitPrice = true;
+                                    let addUnitPrice = true;
 
                                     if (qtySelect.length > 0) {
                                         qtySelect.attr('data-unit-price-value', priceValue);
                                         qtySelect.attr('data-unit-price-formatted', formattedPrice);
 
-                                        var qtySelect2 = qtyField.find('.select2-container .selection .select2-selection .select2-selection__rendered');
+                                        const qtySelect2 = qtyField.find('.select2-container .selection .select2-selection .select2-selection__rendered');
                                         if (qtySelect2.length > 0) {
                                             if (unitPriceHint.length > 0) {
                                                 unitPriceHint.remove();
