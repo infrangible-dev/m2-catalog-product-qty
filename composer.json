@@ -1,11 +1,18 @@
 {
     "name": "infrangible/m2-catalog-product-qty",
-    "description": "Infrangible Magento 2 Catalog Product Qty",
+    "description": "Shows the product page price as the total for the chosen quantity, with an optional unit price and a per-item hint next to the quantity field.",
     "type": "magento2-module",
     "version": "1.2.5",
     "license": "MIT",
     "keywords": [
-        "Magento"
+        "Magento",
+        "Magento 2",
+        "Adobe Commerce",
+        "Pricing",
+        "Catalog",
+        "total price for the chosen quantity",
+        "unit price display",
+        "price times quantity on the product page"
     ],
     "homepage": "https://github.com/infrangible-dev/m2-catalog-product-qty",
     "authors": [
